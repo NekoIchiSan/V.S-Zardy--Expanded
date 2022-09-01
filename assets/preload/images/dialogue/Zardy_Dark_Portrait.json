@@ -1,0 +1,19 @@
+{
+	"dialogue_pos": "left",
+	"position": [
+		10,
+		50
+	],
+	"scale": 1.25,
+	"animations": [
+		{
+			"idle_name": "ZardMan",
+			"anim": "talk",
+			"idle_offsets": [
+				-100,
+				-40
+			]
+		}
+	],
+	"image": "Zardy_Dark_Portrait"
+}

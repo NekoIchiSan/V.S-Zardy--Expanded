@@ -1,0 +1,25 @@
+{
+	"dialogue": [
+		{
+			"speed": 0.05,
+			"portrait": "ZardyPort",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "Darn brats trespassing with their damn noise cannons..."
+		},
+		{
+			"speed": 0.05,
+			"portrait": "ZardyPort",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "You should know it’s dangerous to wander in the dark...  "
+		},
+		{
+			"speed": 0.05,
+			"portrait": "ZardyPort",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "But if you want a show... I’ll give you a show!"
+		}
+	]
+}

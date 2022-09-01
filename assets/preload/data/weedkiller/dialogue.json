@@ -1,0 +1,124 @@
+{
+	"dialogue": [
+		{
+			"expression": "talk",
+			"text": "So, Who do we have here?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "Beep Bop!",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Ah, So your here with your gf, after fighting, a bomb guy?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "Well... This place isn't what it seems. You might not know whats around the corner.",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "Beep boop bep bop?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Oh, I see, your just darn brats that are tresspassing...",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "You were never with a bomb guy... ",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "It was just an accuse to tresspass into my maze.",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "shocked",
+			"text": "Beep Bop!",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Huh? I have never met you in my life...",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "So, How do you know my name...",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "confused",
+			"text": "Beep Beep boop Bop? (Translation:He's joking, right Gf?)",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "I'm Trans, You darn brat...",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "This is your end...",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "excited",
+			"text": "Beep bop!",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		}
+	]
+}
