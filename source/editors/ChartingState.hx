@@ -91,6 +91,9 @@ class ChartingState extends MusicBeatState
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Vine Thing', 'Yah know what this is.'],
+		['Stage Change', 'Value 1: Maze or Maze 2'],
+		['CablecrowShit', 'Whatever'],
+		['DarknessZardy', 'Value 1: ON or OFF'],
 	];
 
 	var _file:FileReference;

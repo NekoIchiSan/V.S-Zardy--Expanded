@@ -43,7 +43,9 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
+	#if debug
 	var debugKeys:Array<FlxKey>;
+	#end
 
 	override function create()
 	{
@@ -51,12 +53,15 @@ class MainMenuState extends MusicBeatState
 		Paths.pushGlobalMods();
 		#end
 		WeekData.loadTheFirstEnabledMod();
+		Paths.clearStoredMemory();
 
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+		#if debug
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
+		#end
 
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
@@ -318,7 +323,7 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			#if desktop
+			#if debug
 			else if (FlxG.keys.anyJustPressed(debugKeys))
 			{
 				selectedSomethin = true;

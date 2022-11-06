@@ -7,3 +7,6 @@ mallEvil
 school
 schoolEvil
 tank
+maze
+mazepart2
+mazeWeedkiller

@@ -8,6 +8,11 @@
 						"Screen Shake",
 						"0.7, 0.04",
 						""
+					],
+					[
+						"Stage Change",
+						"Maze2",
+						""
 					]
 				],
 				null,
@@ -60,8 +65,20 @@
 						"Camera Follow Pos",
 						"dad.x",
 						"dad.y"
+					],
+					[
+						"Stage Change",
+						"Maze",
+						""
+					],
+					[
+						"DarknessZardy",
+						"ON",
+						""
 					]
-				]
+				],
+				null,
+				""
 			],
 			[
 				148384.615384615,
@@ -90,6 +107,11 @@
 						"Camera Follow Pos",
 						"",
 						""
+					],
+					[
+						"Stage Change",
+						"Maze2",
+						""
 					]
 				],
 				null,
@@ -106,6 +128,11 @@
 					[
 						"Add Camera Zoom",
 						"1.50",
+						""
+					],
+					[
+						"DarknessZardy",
+						"OFF",
 						""
 					]
 				],
@@ -151,8 +178,15 @@
 						"Screen Shake",
 						"0.7, 0.05",
 						""
+					],
+					[
+						"Stage Change",
+						"Maze",
+						""
 					]
-				]
+				],
+				null,
+				""
 			],
 			[
 				227153.846153846,

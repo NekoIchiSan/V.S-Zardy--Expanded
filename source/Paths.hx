@@ -225,6 +225,13 @@ class Paths
 		return voices;
 	}
 
+	inline static public function voices2(song:String):Any
+		{
+			var songKey:String = '${formatToSongPath(song)}/Voices-GF';
+			var voices = returnSound('songs', songKey);
+			return voices;
+		}
+
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${formatToSongPath(song)}/Inst';
