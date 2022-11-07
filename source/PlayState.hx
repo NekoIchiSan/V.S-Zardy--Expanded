@@ -559,6 +559,7 @@ class PlayState extends MusicBeatState
 			case 'maze': 
 				defaultCamZoom = 0.9;
 
+				/*
 			 	windowsbg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(24,24,24));
 				if (defaultCamZoom < 1)
 				{
@@ -568,6 +569,7 @@ class PlayState extends MusicBeatState
 				windowsbg.alpha = 0;
 				add(windowsbg);
 				FlxTransWindow.getWindowsTransparent();
+				*/
 				
 				// just putting this here because I was in idiot for like 5 hours and this is how easy it was.
 				mazeBG = new FlxSprite(-600, -300);
@@ -5240,9 +5242,9 @@ class PlayState extends MusicBeatState
 		if(SONG.song == 'Foolhardy'){
 			if(curStep == 2427)
 			{ 
-				windowsbg.alpha = 1;
-				mazeBG.alpha = 0;
-				//FlxTween.tween(dad, {alpha: 0.8}, 0.4);
+				//windowsbg.alpha = 1;
+				//mazeBG.alpha = 0;
+				FlxTween.tween(dad, {alpha: 0.8}, 0.4);
 			}
 			if(curStep == 2943)
 			{
