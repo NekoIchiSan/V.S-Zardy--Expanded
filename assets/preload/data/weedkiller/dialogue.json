@@ -2,7 +2,7 @@
 	"dialogue": [
 		{
 			"expression": "talk",
-			"text": "So, Who do we have here?",
+			"text": "Darn brats tresspassing with their damn noise..",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -10,7 +10,7 @@
 		},
 		{
 			"expression": "talk",
-			"text": "Beep Bop!",
+			"text": "Beep?",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -18,7 +18,7 @@
 		},
 		{
 			"expression": "talk",
-			"text": "Ah, So your here with your gf, after fighting, a bomb guy?",
+			"text": "Huh? Look at that! The damn brat speaks...",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -26,7 +26,7 @@
 		},
 		{
 			"expression": "talk",
-			"text": "Well... This place isn't what it seems. You might not know whats around the corner.",
+			"text": "Why are you here?",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -34,7 +34,7 @@
 		},
 		{
 			"expression": "talk",
-			"text": "Beep boop bep bop?",
+			"text": "Beep bep bop beep.",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -42,47 +42,23 @@
 		},
 		{
 			"expression": "talk",
-			"text": "Oh, I see, your just darn brats that are tresspassing...",
+			"text": "What are you trying to say, you darn brat?",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
 			"portrait": "ZardyPort"
 		},
 		{
-			"expression": "talk",
-			"text": "You were never with a bomb guy... ",
-			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
-			"portrait": "ZardyPort"
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "Boop Bep Beep."
 		},
 		{
 			"expression": "talk",
-			"text": "It was just an accuse to tresspass into my maze.",
-			"boxState": "normal",
-			"sound": "",
-			"speed": 0.05,
-			"portrait": "ZardyPort"
-		},
-		{
-			"expression": "shocked",
-			"text": "Beep Bop!",
-			"boxState": "normal",
-			"sound": "",
-			"speed": 0.05,
-			"portrait": "bf"
-		},
-		{
-			"expression": "talk",
-			"text": "Huh? I have never met you in my life...",
-			"boxState": "normal",
-			"sound": "",
-			"speed": 0.05,
-			"portrait": "ZardyPort"
-		},
-		{
-			"expression": "talk",
-			"text": "So, How do you know my name...",
+			"text": "You should know it's dangerous to wander in the dark...",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -90,7 +66,7 @@
 		},
 		{
 			"expression": "confused",
-			"text": "Beep Beep boop Bop? (Translation:He's joking, right Gf?)",
+			"text": "Beep bop?",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -98,7 +74,7 @@
 		},
 		{
 			"expression": "talk",
-			"text": "I'm Trans, You darn brat...",
+			"text": "What? I seem fa·mil·iar to you. You must be mistaken...",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
@@ -106,10 +82,58 @@
 		},
 		{
 			"expression": "talk",
-			"text": "This is your end...",
+			"text": "I have never met you in my life...",
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "Beep bep boop."
+		},
+		{
+			"expression": "talk",
+			"text": "So, how did you know my name?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "confused",
+			"text": "Beep Beep boop Bop?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "That... makes zero sense.",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "talk",
+			"text": "Beep?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "shocked",
+			"text": "What do you mean by that?",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.06,
 			"portrait": "ZardyPort"
 		},
 		{
@@ -118,6 +142,22 @@
 			"boxState": "normal",
 			"sound": "",
 			"speed": 0.05,
+			"portrait": "bf"
+		},
+		{
+			"expression": "talk",
+			"text": "Well, if you want to sing... Let's start the show!",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.05,
+			"portrait": "ZardyPort"
+		},
+		{
+			"expression": "excited",
+			"text": "Beep!",
+			"boxState": "normal",
+			"sound": "",
+			"speed": 0.03,
 			"portrait": "bf"
 		}
 	]

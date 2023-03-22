@@ -76,8 +76,8 @@ import sys.io.File;
 
 
 #if VIDEOS_ALLOWED
-import VideoHandler;
-import VideoSprite;
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
 #end
 
 using StringTools;
@@ -284,6 +284,8 @@ class PlayState extends MusicBeatState
 	public var gotoGameoverStateAfterVideo:Bool = false;
 	public var vineVideoDone:Bool = false;
 	var videoSprite:FlxSprite;
+	var kadeEngineWatermark:FlxText;
+	var zardyExpandedWatermark:FlxText;
 
 
 	// why did I do this when you can just trigger event notes in the code lmao.
@@ -795,7 +797,11 @@ class PlayState extends MusicBeatState
 		startCharacterLua(dad.curCharacter);
 
 
-		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		if(ClientPrefs.girlfriendAWOOGA == true && SONG.song.toLowerCase() != 'weedkiller'){
+			boyfriend = new Boyfriend(0, 0, "gf-playable");
+		}else{
+			boyfriend = new Boyfriend(0, 0, SONG.player1);
+		}
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
@@ -1029,6 +1035,21 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
+		kadeEngineWatermark = new FlxText(4, 700, 0,
+			SONG.song
+			+ " - "
+			+ CoolUtil.difficultyString()
+			+ (" | PE " + MainMenuState.psychEngineVersion) + (ClientPrefs.girlfriendAWOOGA ? " | Cover by PonkoKnight" : ""), 16);
+		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(kadeEngineWatermark);
+
+		zardyExpandedWatermark = new FlxText(830, 700, 0, 
+		"V.S Zardy: Expanded v" + MainMenuState.zardyExpandedVerison
+		+ " | Created by PonkoKnight"
+		);	
+		zardyExpandedWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(zardyExpandedWatermark);
+
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1060,6 +1081,12 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeTxt.y - 78;
 		}
+		
+
+		if (ClientPrefs.downScroll)
+			kadeEngineWatermark.y = FlxG.height * 0.9 + 45;
+		if (ClientPrefs.downScroll)
+			zardyExpandedWatermark.y = FlxG.height * 0.9 + 45;
 
 		strumLineNotes.cameras = [camHUD];
 		videoSprite.cameras = [camHUD];
@@ -1067,6 +1094,8 @@ class PlayState extends MusicBeatState
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
+		kadeEngineWatermark.cameras = [camHUD];
+		zardyExpandedWatermark.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
@@ -2397,7 +2426,8 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
-			if(boyfriend.curCharacter == "gf-playable" && SONG.song.toLowerCase() == 'foolhardy'){
+			//boyfriend.curCharacter == "gf-playable"
+			if(ClientPrefs.girlfriendAWOOGA == true && SONG.song.toLowerCase() != 'weedkiller'){
 				vocals = new FlxSound().loadEmbedded(Paths.voices2(PlayState.SONG.song));
 			}else{
 				vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
@@ -2421,13 +2451,21 @@ class PlayState extends MusicBeatState
 		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
-		var file:String = Paths.json(songName + '/events');
-		#if MODS_ALLOWED
-		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) {
-		#else
+		var file:String;
+		if (ClientPrefs.girlfriendAWOOGA == true && songName == "bushwhack")
+		{
+			file = Paths.json(songName + '/events-gf');
+		}else{
+			file = Paths.json(songName + '/events');
+		}
 		if (OpenFlAssets.exists(file)) {
-		#end
-			var eventsData:Array<Dynamic> = Song.loadFromJson('events', songName).events;
+			var eventsData:Array<Dynamic>;
+			if (ClientPrefs.girlfriendAWOOGA == true && songName == "bushwhack")
+			{
+				eventsData = Song.loadFromJson('events-gf', songName).events;
+			}else{
+				eventsData = Song.loadFromJson('events', songName).events;
+			}
 			for (event in eventsData) //Event Notes
 			{
 				for (i in 0...event[1].length)
@@ -2898,6 +2936,9 @@ class PlayState extends MusicBeatState
 				pog.setGraphicSize(Std.int(pog.width * 0.75));
 	
 				funnyArray.push(pog);
+
+				trace(pog.width);
+				trace(pog.height);
 	
 				pog.alpha = 0;
 	
@@ -2905,6 +2946,9 @@ class PlayState extends MusicBeatState
 	
 				pog.x = boyfriend.x + (pog.width * index);
 				pog.y = boyfriend.y - 135;
+
+				trace(pog.x);
+				trace(pog.y);
 	
 				index++;
 			}
@@ -3595,10 +3639,10 @@ class PlayState extends MusicBeatState
 					case "ON": 	
 						darknessZardy();
 					case "OFF": 
-						FlxTween.tween(darknessBackground2, {alpha: 0}, 0.4, {onComplete: function(tw) {
+						FlxTween.tween(darknessBackground2, {alpha: 0}, 1, {onComplete: function(tw) {
 							//darknessClear();
 						}});
-						FlxTween.tween(darknessBackground, {alpha: 0}, 0.4, {onComplete: function(tw) {
+						FlxTween.tween(darknessBackground, {alpha: 0}, 1, {onComplete: function(tw) {
 							darknessClear();
 						}});
 				}

@@ -35,6 +35,7 @@ class ClientPrefs {
 	public static var reanimatedCharacters:Bool = false;
 	public static var zardy:String = "zardy";
 	public static var gahRechartedMode:Bool = false;
+	public static var girlfriendAWOOGA:Bool = false;
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -122,6 +123,7 @@ class ClientPrefs {
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 		FlxG.save.data.reanimatedCharacters = reanimatedCharacters;
 		FlxG.save.data.gahRechartedMode = gahRechartedMode;
+		FlxG.save.data.girlfriendAWOOGA = girlfriendAWOOGA;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.sickWindow = sickWindow;

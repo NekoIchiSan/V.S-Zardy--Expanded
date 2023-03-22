@@ -37,13 +37,13 @@ class FreeplayState extends MusicBeatState
 	var scoreText:FlxText;
 	var diffText:FlxText;
 	var reanimatedCharactersBG:FlxSprite;
-	var reanimatedCharactersText:FlxText;
 	var reanimatedCharactersTitleText:FlxText;
 	var lerpScore:Int = 0;
 	var lerpRating:Float = 0;
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 	var rechartedModeText:FlxText;
+	var girlfriendModeText:FlxText;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -158,18 +158,18 @@ class FreeplayState extends MusicBeatState
 		reanimatedCharactersBG.alpha = 0.6;
 		add(reanimatedCharactersBG);
 
-		reanimatedCharactersTitleText = new FlxText(scoreText.x - 198, scoreText.y + 36, 0, "Reanimated Characters:", 22);
+		reanimatedCharactersTitleText = new FlxText(scoreText.x - 198, scoreText.y + 36, 0, "Reanimated Characters:" + Std.string(ClientPrefs.reanimatedCharacters) + " (Press Alt)", 22);
 		reanimatedCharactersTitleText.setFormat(Paths.font("vcr.ttf"), 22, FlxColor.WHITE, RIGHT);
 		add(reanimatedCharactersTitleText);
 
-		rechartedModeText = new FlxText(scoreText.x - 198, scoreText.y + 66, 0, "Recharted Mode:" + Std.string(ClientPrefs.gahRechartedMode) + " (8 to Change)", 22);
+		rechartedModeText = new FlxText(scoreText.x - 198, scoreText.y + 66, 0, "Recharted Mode:" + Std.string(ClientPrefs.gahRechartedMode) + " (Press 8)", 22);
 		rechartedModeText.alpha = 0;
 		rechartedModeText.setFormat(Paths.font("vcr.ttf"), 22, FlxColor.WHITE, RIGHT);
 		add(rechartedModeText);
 
-		reanimatedCharactersText = new FlxText(reanimatedCharactersTitleText.x + 284, reanimatedCharactersTitleText.y, 0, Std.string(ClientPrefs.reanimatedCharacters) + " (Alt to Change)", -10);
-		reanimatedCharactersText.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, RIGHT);
-		add(reanimatedCharactersText);
+		girlfriendModeText = new FlxText(scoreText.x - 198, scoreText.y + 96, "GF Mode: " + Std.string(ClientPrefs.girlfriendAWOOGA) + " (Press 9)", 22);
+		girlfriendModeText.setFormat(Paths.font("vcr.ttf"), 22, FlxColor.WHITE, RIGHT);
+		add(girlfriendModeText);
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
@@ -296,6 +296,7 @@ class FreeplayState extends MusicBeatState
 
 		var upP = controls.UI_UP_P;
 		var eight = FlxG.keys.justPressed.EIGHT;
+		var nine = FlxG.keys.justPressed.NINE;
 		var alt = FlxG.keys.justPressed.ALT;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
@@ -309,13 +310,12 @@ class FreeplayState extends MusicBeatState
 			if(songs[curSelected].songName == "Foolhardy"){
 				rechartedModeText.alpha = 1;
 				reanimatedCharactersBG.alpha = 0;
-				reanimatedCharactersText.alpha = 0;
 				reanimatedCharactersTitleText.alpha = 0;
 			}else{
 				rechartedModeText.alpha = 0;
 				reanimatedCharactersBG.alpha = 0;
-				reanimatedCharactersText.alpha = 0;
 				reanimatedCharactersTitleText.alpha = 0;
+				girlfriendModeText.alpha = 0;
 			}
 		}else{
 			if(songs[curSelected].songName == "Foolhardy"){
@@ -325,8 +325,13 @@ class FreeplayState extends MusicBeatState
 			}
 			if(reanimatedCharactersBG.alpha == 0){
 				reanimatedCharactersBG.alpha = 1;
-				reanimatedCharactersText.alpha = 1;
 				reanimatedCharactersTitleText.alpha = 1;
+				girlfriendModeText.alpha = 1;
+			}
+			if(songs[curSelected].songName == "Bushwhack"){
+				girlfriendModeText.y = scoreText.y + 66;
+			}else{
+				girlfriendModeText.y = scoreText.y + 96;
 			}
 		}
 
@@ -346,19 +351,28 @@ class FreeplayState extends MusicBeatState
 			{
 				if(ClientPrefs.reanimatedCharacters == false){
 					ClientPrefs.reanimatedCharacters = true;
-					reanimatedCharactersText.text = ClientPrefs.reanimatedCharacters + " (Alt to Change)";
+					reanimatedCharactersTitleText.text = "Remastered Characters:" + ClientPrefs.reanimatedCharacters + " (Press Alt)";
 				}else{
 					ClientPrefs.reanimatedCharacters = false;
-					reanimatedCharactersText.text = ClientPrefs.reanimatedCharacters + " (Alt to Change)";
+					reanimatedCharactersTitleText.text = "Remastered Characters:" + ClientPrefs.reanimatedCharacters + " (Press Alt)";
 				}
 			}
 			if(eight){
 				if(ClientPrefs.gahRechartedMode == true){
 					ClientPrefs.gahRechartedMode = false;
-					rechartedModeText.text = "Recharted Mode:" + ClientPrefs.gahRechartedMode + " (8 to Change)";
+					rechartedModeText.text = "Recharted Mode:" + ClientPrefs.gahRechartedMode + " (Press 8)";
 				}else{
 					ClientPrefs.gahRechartedMode = true;
-					rechartedModeText.text = "Recharted Mode:" + ClientPrefs.gahRechartedMode + " (8 to Change)";
+					rechartedModeText.text = "Recharted Mode:" + ClientPrefs.gahRechartedMode + " (Press 8)";
+				}
+			}
+			if(nine){
+				if(ClientPrefs.girlfriendAWOOGA == true){
+					ClientPrefs.girlfriendAWOOGA = false;
+					girlfriendModeText.text = "GF Mode:" + ClientPrefs.girlfriendAWOOGA + " (Press 9)";
+				}else{
+					ClientPrefs.girlfriendAWOOGA = true;
+					girlfriendModeText.text = "GF Mode:" + ClientPrefs.girlfriendAWOOGA + " (Press 9)";
 				}
 			}
 
@@ -430,12 +444,12 @@ class FreeplayState extends MusicBeatState
 		{
 			persistentUpdate = false;
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
+			var poop:String;
 			if(ClientPrefs.gahRechartedMode == true && songs[curSelected].songName == "Foolhardy"){
-				curDifficulty = 2;
+				poop = Highscore.formatSong(songLowercase, 1);
 			}else{
-				curDifficulty = 0;
+				poop = Highscore.formatSong(songLowercase, 0);
 			}
-			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 			/*#if MODS_ALLOWED
 			if(!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop))) {
 			#else
@@ -449,7 +463,11 @@ class FreeplayState extends MusicBeatState
 
 			PlayState.SONG = Song.loadFromJson(poop, songLowercase);
 			PlayState.isStoryMode = false;
-			PlayState.storyDifficulty = curDifficulty;
+			if(ClientPrefs.gahRechartedMode == true && songs[curSelected].songName == "Foolhardy"){
+				PlayState.storyDifficulty = 1;
+			}else{
+				PlayState.storyDifficulty = 0;
+			}
 
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			if(colorTween != null) {
@@ -619,11 +637,11 @@ class FreeplayState extends MusicBeatState
 			scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 		}else{
 			if(songs[curSelected].songName == "Foolhardy"){
-				scoreBG.setGraphicSize(Std.int(scoreBG.width), 126);
+				scoreBG.setGraphicSize(Std.int(scoreBG.width), 186);
 				scoreBG.scale.x = FlxG.width - scoreText.x + 6;
 				scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 			}else{
-				scoreBG.setGraphicSize(Std.int(scoreBG.width), 66);
+				scoreBG.setGraphicSize(Std.int(scoreBG.width), 126);
 				scoreBG.scale.x = FlxG.width - scoreText.x + 6;
 				scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 			}
@@ -634,6 +652,8 @@ class FreeplayState extends MusicBeatState
 		reanimatedCharactersBG.x -= reanimatedCharactersBG.width / 2;
 		rechartedModeText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
 		rechartedModeText.x -= rechartedModeText.width / 2;
+		girlfriendModeText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
+		girlfriendModeText.x -= girlfriendModeText.width / 2;
 		//diffText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
 		//diffText.x -= diffText.width / 2;
 	}
