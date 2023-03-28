@@ -306,34 +306,22 @@ class FreeplayState extends MusicBeatState
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
 
-		if(songs[curSelected].songName == "Weedkiller"){
-			if(songs[curSelected].songName == "Foolhardy"){
-				rechartedModeText.alpha = 1;
-				reanimatedCharactersBG.alpha = 0;
-				reanimatedCharactersTitleText.alpha = 0;
-			}else{
-				rechartedModeText.alpha = 0;
-				reanimatedCharactersBG.alpha = 0;
-				reanimatedCharactersTitleText.alpha = 0;
-				girlfriendModeText.alpha = 0;
-			}
+		if(songs[curSelected].songName == "Foolhardy"){
+			rechartedModeText.alpha = 1;
 		}else{
-			if(songs[curSelected].songName == "Foolhardy"){
-				rechartedModeText.alpha = 1;
-			}else{
-				rechartedModeText.alpha = 0;
-			}
-			if(reanimatedCharactersBG.alpha == 0){
-				reanimatedCharactersBG.alpha = 1;
-				reanimatedCharactersTitleText.alpha = 1;
-				girlfriendModeText.alpha = 1;
-			}
-			if(songs[curSelected].songName == "Bushwhack"){
-				girlfriendModeText.y = scoreText.y + 66;
-			}else{
-				girlfriendModeText.y = scoreText.y + 96;
-			}
+			rechartedModeText.alpha = 0;
 		}
+		if(reanimatedCharactersBG.alpha == 0){
+			reanimatedCharactersBG.alpha = 1;
+			reanimatedCharactersTitleText.alpha = 1;
+			girlfriendModeText.alpha = 1;
+		}
+		if(songs[curSelected].songName == "Bushwhack"){
+			girlfriendModeText.y = scoreText.y + 66;
+		}else{
+			girlfriendModeText.y = scoreText.y + 96;
+		}
+		
 
 		if(songs.length > 1)
 		{
@@ -631,20 +619,14 @@ class FreeplayState extends MusicBeatState
 	}
 
 	private function positionHighscore() {
-		if(songs[curSelected].songName == "Weedkiller"){
-			scoreBG.setGraphicSize(Std.int(scoreBG.width), 46);
-			scoreBG.scale.x = FlxG.width - scoreText.x + 2;
+		if(songs[curSelected].songName == "Foolhardy"){
+			scoreBG.setGraphicSize(Std.int(scoreBG.width), 186);
+			scoreBG.scale.x = FlxG.width - scoreText.x + 6;
 			scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 		}else{
-			if(songs[curSelected].songName == "Foolhardy"){
-				scoreBG.setGraphicSize(Std.int(scoreBG.width), 186);
-				scoreBG.scale.x = FlxG.width - scoreText.x + 6;
-				scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
-			}else{
-				scoreBG.setGraphicSize(Std.int(scoreBG.width), 126);
-				scoreBG.scale.x = FlxG.width - scoreText.x + 6;
-				scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
-			}
+			scoreBG.setGraphicSize(Std.int(scoreBG.width), 126);
+			scoreBG.scale.x = FlxG.width - scoreText.x + 6;
+			scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 		}
 		scoreText.x = FlxG.width - scoreText.width - 6;
 

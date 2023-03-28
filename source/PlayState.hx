@@ -467,8 +467,6 @@ class PlayState extends MusicBeatState
 					curStage = 'maze';
 				case 'bushwhack': 
 					curStage = 'mazepart2';
-				case 'weedkiller': 
-					curStage = 'mazeWeedkiller';
 				default:
 					curStage = 'stage';
 			}
@@ -511,13 +509,6 @@ class PlayState extends MusicBeatState
 				GF_Y = 130;
 				DAD_X = 100;
 				//DAD_X -= 280;
-				DAD_Y += 130;
-			case 'mazeWeedkiller': 
-				BF_X += 40;
-				BF_Y += 130;
-				GF_X = 400;
-				GF_Y += 140;
-				DAD_X = 100;
 				DAD_Y += 130;
 			default: 
 				defaultCamZoom = 0.9;
@@ -611,36 +602,6 @@ class PlayState extends MusicBeatState
 
 					add(maze2);
 					add(vine);
-				case 'mazeWeedkiller':
-					defaultCamZoom = 0.9;
-
-					halloweenWhite = new BGSprite(null, -FlxG.width, -FlxG.height, 0, 0);
-					halloweenWhite.makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.WHITE);
-					halloweenWhite.alpha = 0;
-					halloweenWhite.blend = ADD;
-
-					mazeBG = new FlxSprite(-600, -300);
-					mazeBG.frames = Paths.getSparrowAtlas('ZardyBackgrounds/Maze', 'zardy');
-					mazeBG.animation.addByPrefix('idle','Stage00', 24, false);
-					mazeBG.scrollFactor.set(0.9, 0.9);
-					mazeBG.updateHitbox();
-
-					maze2 = new FlxSprite(-600, -200);
-					maze2.frames = Paths.getSparrowAtlas('ZardyBackgrounds/Zardy2BG', 'zardy');
-					maze2.animation.addByPrefix('idle2','BG00', 24, false);
-
-
-					vine = new FlxSprite(155,620);
-					vine.frames = Paths.getSparrowAtlas("ZardyBackgrounds/ZardyWeek2_Vines","zardy");
-					
-					vine.animation.addByPrefix("vine","Vine Whip instance",24,false);
-					vine.setGraphicSize(Std.int(vine.width * 0.85));
-							
-					vine.alpha = 0;
-					
-					add(maze2);
-					add(mazeBG);
-					add(vine);
 		}
 
 		switch(Paths.formatToSongPath(SONG.song))
@@ -664,8 +625,6 @@ class PlayState extends MusicBeatState
 
 		switch(curStage)
 		{
-			case 'mazeWeedkiller': 
-				add(halloweenWhite);
 			case 'spooky':
 				add(halloweenWhite);
 			case 'tank':
@@ -782,7 +741,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if(ClientPrefs.reanimatedCharacters == true && SONG.song.toLowerCase() != "weedkiller"){
+		if(ClientPrefs.reanimatedCharacters == true){
 			switch(SONG.song.toLowerCase()){
 				case "foolhardy": 
 					dad = new Character(0,0, 'zardy-remastered');
@@ -797,7 +756,7 @@ class PlayState extends MusicBeatState
 		startCharacterLua(dad.curCharacter);
 
 
-		if(ClientPrefs.girlfriendAWOOGA == true && SONG.song.toLowerCase() != 'weedkiller'){
+		if(ClientPrefs.girlfriendAWOOGA == true){
 			boyfriend = new Boyfriend(0, 0, "gf-playable");
 		}else{
 			boyfriend = new Boyfriend(0, 0, SONG.player1);
@@ -1057,20 +1016,6 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		if(SONG.song.toLowerCase() == "weedkiller"){
-			darknessBackground2 = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.fromHSL(0, 0, 0, 255));
-			darknessBackground2.alpha = 0;
-			darknessBackground2.scrollFactor.set();
-			add(darknessBackground2);
-	
-			darknessBackground = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.fromHSL(0, 0, 0, 255));
-			darknessBackground.alpha = 0;
-			darknessBackground.scrollFactor.set();
-			add(darknessBackground);
-		}else{
-			// dont add lmao
-		}
-
 
 		botplayTxt = new FlxText(400, timeTxt.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1099,11 +1044,6 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		if(SONG.song.toLowerCase() == "weedkiller"){
-			darknessBackground.cameras = [camHUD];
-		}else{
-
-		}
 		botplayTxt.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		songNameTxt.cameras = [camHUD];
@@ -1214,7 +1154,7 @@ class PlayState extends MusicBeatState
 
 				default:
 					switch(SONG.song.toLowerCase()){
-						case 'foolhardy' | 'bushwhack' | 'weedkiller': 
+						case 'foolhardy' | 'bushwhack': 
 							zardyInto();
 					}
 					//startCountdown();
@@ -1224,7 +1164,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			switch(SONG.song.toLowerCase()){
-				case 'foolhardy' | 'bushwhack' | 'weedkiller': 
+				case 'foolhardy' | 'bushwhack': 
 					zardyInto();
 			}
 			//startCountdown();
@@ -1717,7 +1657,7 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, timeForStuff, {ease: FlxEase.quadInOut});
 				moveCamera(true);
 				switch(songName){
-					case 'foolhardy' | 'bushwhack' | 'weedkiller': 
+					case 'foolhardy' | 'bushwhack': 
 						startDialogue(dialogueJson, songName);
 					default:
 						startCountdown();
@@ -1726,7 +1666,7 @@ class PlayState extends MusicBeatState
 				//dad.alpha = 1;
 				boyfriend.alpha = 1;
 				switch(songName){
-					case 'foolhardy' | 'weedkiller':
+					case 'foolhardy':
 						gf.alpha = 1;
 
 					case 'bushwhack': 
@@ -1739,7 +1679,7 @@ class PlayState extends MusicBeatState
 			};
 
 		switch(songName){
-			case 'foolhardy' | 'bushwhack' | 'weedkiller': 
+			case 'foolhardy' | 'bushwhack': 
 				cutsceneHandler.endTime = 6;
 
 				FlxG.camera.zoom = 1;
@@ -2427,7 +2367,7 @@ class PlayState extends MusicBeatState
 
 		if (SONG.needsVoices)
 			//boyfriend.curCharacter == "gf-playable"
-			if(ClientPrefs.girlfriendAWOOGA == true && SONG.song.toLowerCase() != 'weedkiller'){
+			if(ClientPrefs.girlfriendAWOOGA == true){
 				vocals = new FlxSound().loadEmbedded(Paths.voices2(PlayState.SONG.song));
 			}else{
 				vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
@@ -2988,7 +2928,7 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
-		if (curStage == 'mazepart2' || curStage == "mazeWeedkiller")
+		if (curStage == 'mazepart2')
 			{
 				
 			if (unspawnNotes[0] != null)
@@ -3025,11 +2965,7 @@ class PlayState extends MusicBeatState
 								trace("AHH");
 								boyfriend.playAnim("hurt", false);
 								boyfriend.specialAnim = true;
-								if(curStep >= 2953 && SONG.song.toLowerCase() == 'weedkiller'){
-									// I mean its the end, lets make it cool by making bf just kill the vine as soon as it grabs him.
-								}else{
-									generateAndShowRandomNotes(lengthOfNotes);
-								}
+								generateAndShowRandomNotes(lengthOfNotes);
 							}
 				
 							if (vine.animation.frameIndex == 56 && !vine.animation.paused)
@@ -3161,9 +3097,11 @@ class PlayState extends MusicBeatState
 			case 'mazepart2': 
 				gf.alpha = 0;
 				maze2.animation.play('idle2');
+			/*
 			case 'mazeWeedkiller': 
 				mazeBG.animation.play('idle');
 				maze2.animation.play('idle2');
+			*/
 		}
 
 		if(!inCutscene) {
@@ -3972,14 +3910,17 @@ class PlayState extends MusicBeatState
 							} else if(gf != null) {
 								gf.visible = false;
 							}
-								if(SONG.song.toLowerCase() == "bushwhack"){
-									dad.x = dad.x - 1300;
-								}
+
+							if(SONG.song.toLowerCase() == "bushwhack"){
+								dad.x = dad.x - 1300;
+							}
+								/*
 								if(SONG.song.toLowerCase() == 'weedkiller'){
 									dad.alpha = 0;
 								}else{
-									dad.alpha = lastAlpha;
-								}
+								*/
+							dad.alpha = lastAlpha;
+								//}
 							iconP2.changeIcon(dad.healthIcon);
 						}
 						setOnLuas('dadName', dad.curCharacter);
@@ -4162,10 +4103,12 @@ class PlayState extends MusicBeatState
 		timeTxt.visible = false;
 		songNameTxt.visible = false;
 		songMakers.visible = false;
+		/*
 		if(SONG.song.toLowerCase() == 'weedkiller'){
 			darknessBackground.visible = false;
 			darknessBackground2.visible = false;
 		}
+		*/
 		canPause = false;
 		endingSong = true;
 		camZooming = false;
@@ -5369,7 +5312,8 @@ class PlayState extends MusicBeatState
 			notes.sort(FlxSort.byY, ClientPrefs.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 		}
 
-		if(SONG.song == 'Weedkiller'){
+		// i'll reused some of these events in the new song ig
+		/*
 			switch(curStep){
 				case 624: 
 					FlxTween.tween(dad, {alpha: 0}, 0.04);
@@ -5398,7 +5342,7 @@ class PlayState extends MusicBeatState
 						dad.alpha = 0;
 					}});
 			}
-		}
+		*/
 
 
 
